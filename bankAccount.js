@@ -1,24 +1,27 @@
+const Transaction = require('./transaction')
+
 class BankAccount {
 
   constructor() {
     this.transactions = [];
     this.balance = [];
+    this.header = 'date || credit || debit || balance';
   }
 
   printStatement() {
     this.#calculateBalance();
     var output = this.#setOutput();
-    return 'date || credit || debit || balance' + output.reverse().join('');
+    return this.header + output;
   }
 
   deposit(transactionDate, amount) {
-    this.transactions.push({date: transactionDate, credit: amount, debit: '', balance: amount});
+    this.transactions.push(new Transaction(transactionDate, amount, ''));
   }
 
   #setOutput() {
     return this.transactions.map((transaction) => {
       return `\n${transaction.date} || ${transaction.credit.toFixed(2)} || || ${transaction.balance.toFixed(2)}`;
-    })
+    }).reverse().join('');
   }
 
   #calculateBalance() {
