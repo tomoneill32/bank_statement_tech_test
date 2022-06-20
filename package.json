@@ -19,5 +19,10 @@
   "homepage": "https://github.com/tomoneill32/bank_statement_tech_test#readme",
   "dependencies": {
     "jest": "^28.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }
