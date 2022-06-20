@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/tomoneill32/bank_statement_tech_test#readme",
   "dependencies": {
-    "jest": "^28.1.1"
+    "eslint-plugin-jest": "^26.5.3",
+    "jest": "^28.1.1",
+    "eslint": "^8.10.0",
+    "eslint-plugin-node": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "^8.18.0",
