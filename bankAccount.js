@@ -6,13 +6,13 @@ class BankAccount {
   }
 
   printStatement() {
-    this.calculateBalance();
+    this.#calculateBalance();
     var output = this.#setOutput();
     return 'date || credit || debit || balance' + output.reverse().join('');
   }
 
-  deposit(transactiondate, amount) {
-    this.transactions.push({date: transactiondate, credit: amount, debit: '', balance: amount});
+  deposit(transactionDate, amount) {
+    this.transactions.push({date: transactionDate, credit: amount, debit: '', balance: amount});
   }
 
   #setOutput() {
@@ -21,11 +21,12 @@ class BankAccount {
     })
   }
 
-  calculateBalance() {
+  #calculateBalance() {
     var runningBalance = 0;
     this.transactions = this.transactions.map((transaction) => {
       runningBalance += transaction.credit;
-      return { date: transaction.date, credit: transaction.credit, debit: transaction.debit, balance: runningBalance };
+      transaction.balance = runningBalance;
+      return transaction;
     })
   }
 }
