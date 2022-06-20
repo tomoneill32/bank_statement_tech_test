@@ -9,7 +9,8 @@ class BankAccount {
   }
 
   deposit(date, amount) {
-    this.transactions.push('\n10/01/2023 || 1000.00 || || 1000.00');
+    amount = amount.toFixed(2);
+    this.transactions.push(`\n${date} || ${amount} || || ${amount}`);
   }
 }
 
