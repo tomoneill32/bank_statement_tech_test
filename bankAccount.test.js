@@ -6,5 +6,10 @@ describe('BankAccount', () => {
       const account = new BankAccount();
       expect(account.printStatement()).toEqual('date || credit || debit || balance');
     })
+    it('displays a bank statement with a single deposit', () => {
+      const account = new BankAccount();
+      account.deposit('10/01/2023',1000);
+      expect(account.printStatement()).toEqual('date || credit || debit || balance\n10/01/2023 || 1000.00 || || 1000.00')
+    })
   })
 })
