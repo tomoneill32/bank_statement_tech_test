@@ -19,5 +19,12 @@ describe('BankAccount', () => {
       expect(account.printStatement()).toEqual('date || credit || debit || balance\n11/02/2022 || 500.21 || || 500.21')
     })
 
+    it('correctly displays the bank statement with two deposits one after the other', () => {
+      const account = new BankAccount();
+      account.deposit('10/01/2023',1000);
+      account.deposit('13/01/2023',2000);
+      expect(account.printStatement()).toEqual('date || credit || debit || balance\n13/01/2023 || 2000.00 || || 3000.00\n10/01/2023 || 1000.00 || || 1000.00')
+    })
+
   })
 })
