@@ -35,5 +35,13 @@ describe('BankAccount', () => {
       expect(account.printStatement()).toEqual('date || credit || debit || balance\n14/01/2023 || || 500.00 || 2500.00\n13/01/2023 || 2000.00 || || 3000.00\n10/01/2023 || 1000.00 || || 1000.00')
     })
 
+    // it('still correctly displays the statement with the entries entered in a different order', () => {
+    //   const account = new BankAccount();
+    //   account.deposit('13/01/2023',2000);
+    //   account.deposit('10/01/2023',1000);
+    //   account.withdraw('14/01/2023',500);
+    //   expect(account.printStatement()).toEqual('date || credit || debit || balance\n14/01/2023 || || 500.00 || 2500.00\n13/01/2023 || 2000.00 || || 3000.00\n10/01/2023 || 1000.00 || || 1000.00')
+    // })
+
   })
 })

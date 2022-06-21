@@ -1,4 +1,5 @@
-const Transaction = require('./transaction')
+const Transaction = require('./transaction');
+const BankStatement = require('./bankStatement');
 
 class BankAccount {
 
@@ -10,8 +11,8 @@ class BankAccount {
 
   printStatement() {
     this.#calculateBalance();
-    var output = this.#setOutput();
-    return this.header + output;
+    var statement = new BankStatement(this.transactions);
+    return statement.returnStatement();
   }
 
   deposit(transactionDate, amount) {
@@ -22,25 +23,10 @@ class BankAccount {
     this.transactions.push(new Transaction(transactionDate, 0, amount));
   }
 
-  #setOutput() {
-    return this.transactions.map((transaction) => {
-      var credit = ''
-      if (transaction.credit !== 0) {
-        credit = transaction.credit.toFixed(2) + ' ';
-      }
-      var debit = ''
-      if (transaction.debit !== 0) {
-        debit = transaction.debit.toFixed(2) + ' ';
-      }
-      return `\n${transaction.date} || ${credit}|| ${debit}|| ${transaction.balance.toFixed(2)}`;
-    }).reverse().join('');
-  }
-
   #calculateBalance() {
     var runningBalance = 0;
     this.transactions = this.transactions.map((transaction) => {
-      runningBalance += transaction.credit;
-      runningBalance -= transaction.debit;
+      runningBalance = runningBalance + transaction.credit - transaction.debit;
       transaction.balance = runningBalance;
       return transaction;
     })
