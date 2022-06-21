@@ -1,5 +1,5 @@
-const BankAccount = require('./bankAccount')
-const Transaction = require('./transaction')
+const BankAccount = require('../bankAccount')
+const Transaction = require('../bankTransaction')
 
 describe('BankAccount', () => {
   describe('printStatement', () => {
