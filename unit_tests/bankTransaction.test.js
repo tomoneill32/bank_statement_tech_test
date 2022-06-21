@@ -1,4 +1,4 @@
-const Transaction = require('../transaction');
+const Transaction = require('../bankTransaction');
 
 describe('Transaction', () => {
   describe('date', () => {

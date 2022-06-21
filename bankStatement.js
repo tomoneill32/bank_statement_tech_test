@@ -6,15 +6,16 @@ class BankStatement {
   }
 
   returnStatement() {
-    return this.statement
+    console.log(this.statement);
+    return this.statement;
   }
 
   #createStatement() {
-    var output = this.#setOutput();
-    return 'date || credit || debit || balance' + output;
+    var transactionsString = this.#bankTransactionsToString();
+    return 'date || credit || debit || balance' + transactionsString;
   }
 
-  #setOutput() {
+  #bankTransactionsToString() {
     return this.transactions.map((transaction) => {
       var credit = this.#reformatNumber(transaction.credit);
       var debit = this.#reformatNumber(transaction.debit);
@@ -32,8 +33,18 @@ class BankStatement {
   }
 
   #reformatDate(date) {
-    var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-    return `${date.getDate()}/${months[date.getMonth()]}/${date.getFullYear()}`
+    var day = this.#twoDigitNumber(date.getDate());
+    var month = this.#twoDigitNumber(date.getMonth() + 1)
+    return `${day}/${month}/${date.getFullYear()}`
+  }
+
+  #twoDigitNumber(number) {
+    if (number > 9) {
+      return String(number)
+    }
+    else {
+      return `0${number}`
+    }
   }
 }
 
