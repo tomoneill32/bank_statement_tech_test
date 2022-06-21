@@ -25,4 +25,16 @@ describe('Transaction', () => {
       expect(transaction.validDate()).toEqual(true);
     })
   })
+
+  describe('validAmount', () => {
+    it('returns false for a string credit', () => {
+      const transaction = new Transaction('25/01/2025','text',0);
+      expect(transaction.validAmount()).toEqual(false);
+    })
+
+    it('returns false for a string debit', () => {
+      const transaction = new Transaction('25/01/2025', 0 , '£30');
+      expect(transaction.validAmount()).toEqual(false);
+    })
+  })
 })

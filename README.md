@@ -33,7 +33,7 @@ account.printStatement();
 
 The bank statement will be printed to the console, ordered in reverse order by transaction date and the correct balance on each transaction regardless of the order in which the transactions were created. 
 
-To deposit and withdraw, a date must be given along with an amount. The date should be passed as a string in the format 'dd/mm/yyyy', the amount deposited/withdrawn as a number.
+To deposit and withdraw, a date must be given along with an amount. The date should be passed as a string in the format 'dd/mm/yyyy', the amount deposited/withdrawn as a number, if the date format is incorrect or the amount given is not a number the transaction will not be added and a message will be passed to the console.
 
 ---
 

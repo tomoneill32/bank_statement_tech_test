@@ -2,8 +2,8 @@ class Transaction {
 
   constructor(date, credit, debit) {
     this.date = this.#StringToDate(date);
-    this.credit = credit;
-    this.debit = debit;
+    this.credit = Number(credit);
+    this.debit = Number(debit);
     this.balance = null;
   }
 
@@ -42,6 +42,10 @@ class Transaction {
 
   validDate() {
     return !isNaN(this.date);
+  }
+
+  validAmount() {
+    return (!isNaN(this.credit) && !isNaN(this.debit));
   }
 }
 

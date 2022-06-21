@@ -14,19 +14,17 @@ class BankAccount {
 
   deposit(transactionDate, amount) {
     var deposit = new Transaction(transactionDate, amount, 0)
-    if (deposit.validDate()) {
+    var validation = this.#validateTransaction(deposit);
+    if (validation) {
       this.#addTransaction(deposit);
-    } else {
-      console.log('Invalid date');
     }
   }
 
   withdraw(transactionDate, amount) {
     var withdrawal = new Transaction(transactionDate, 0, amount);
-    if (withdrawal.validDate()) {
+    var validation = this.#validateTransaction(withdrawal);
+    if (validation) {
       this.#addTransaction(withdrawal);
-    } else {
-      console.log('Invalid date');
     }
   }
 
@@ -49,6 +47,18 @@ class BankAccount {
     this.transactions.push(transaction);
     this.#sortTransactionsByDate();
     this.#calculateTransactionBalances();
+  }
+
+  #validateTransaction(transaction) {
+    if (!transaction.validDate()) {
+      console.log('Invalid date');
+      return false
+    } else if (!transaction.validAmount()) {
+      console.log('Invalid amount');
+      return false
+    } else {
+      return true
+    }
   }
 }
 

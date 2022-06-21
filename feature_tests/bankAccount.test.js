@@ -56,5 +56,13 @@ describe('BankAccount', () => {
       account.withdraw('text', 200);
       expect(account.printStatement()).toEqual('date || credit || debit || balance\n10/01/2023 || 1000.00 || || 1000.00')
     })
+
+    it('does not include invalid amounts', () => {
+      account.deposit('10/01/2023',1000);
+      account.deposit('11/01/2023','£500');
+      account.withdraw('12/01/2023', '50,000')
+      console.log(account.transactions);
+      expect(account.printStatement()).toEqual('date || credit || debit || balance\n10/01/2023 || 1000.00 || || 1000.00')
+    })
   })
 })
