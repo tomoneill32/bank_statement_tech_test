@@ -10,6 +10,7 @@ class BankAccount {
   }
 
   printStatement() {
+    this.#sortByDate();
     this.#calculateBalance();
     var statement = new BankStatement(this.transactions);
     return statement.returnStatement();
@@ -29,6 +30,12 @@ class BankAccount {
       runningBalance = runningBalance + transaction.credit - transaction.debit;
       transaction.balance = runningBalance;
       return transaction;
+    })
+  }
+
+  #sortByDate() {
+    this.transactions = this.transactions.sort(function(a,b){
+      return a.date -b.date
     })
   }
 }
