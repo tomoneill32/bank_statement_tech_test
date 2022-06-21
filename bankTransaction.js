@@ -39,6 +39,10 @@ class Transaction {
     }
     return `0${number}`
   }
+
+  validDate() {
+    return !isNaN(this.date);
+  }
 }
 
 module.exports = Transaction;

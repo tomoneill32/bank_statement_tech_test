@@ -13,15 +13,21 @@ class BankAccount {
   }
 
   deposit(transactionDate, amount) {
-    this.transactions.push(new Transaction(transactionDate, amount, 0));
-    this.#sortTransactionsByDate();
-    this.#calculateTransactionBalances();
+    var deposit = new Transaction(transactionDate, amount, 0)
+    if (deposit.validDate()) {
+      this.#addTransaction(deposit);
+    } else {
+      console.log('Invalid date');
+    }
   }
 
   withdraw(transactionDate, amount) {
-    this.transactions.push(new Transaction(transactionDate, 0, amount));
-    this.#sortTransactionsByDate();
-    this.#calculateTransactionBalances();
+    var withdrawal = new Transaction(transactionDate, 0, amount);
+    if (withdrawal.validDate()) {
+      this.#addTransaction(withdrawal);
+    } else {
+      console.log('Invalid date');
+    }
   }
 
   #calculateTransactionBalances() {
@@ -37,6 +43,12 @@ class BankAccount {
     this.transactions = this.transactions.sort(function(a,b){
       return a.date -b.date
     })
+  }
+
+  #addTransaction(transaction) {
+    this.transactions.push(transaction);
+    this.#sortTransactionsByDate();
+    this.#calculateTransactionBalances();
   }
 }
 
