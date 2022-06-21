@@ -13,6 +13,14 @@ class Transaction {
     var date = this.#reformatDate(this.date);
     return `\n${date} || ${credit}|| ${debit}|| ${this.balance.toFixed(2)}`;
   }
+
+  validDate() {
+    return !isNaN(this.date);
+  }
+
+  validAmount() {
+    return (!isNaN(this.credit) && !isNaN(this.debit));
+  }
   
   #StringToDate(dateString) {
     var reformattedString = dateString.split('/').reverse().join('-');
@@ -29,23 +37,15 @@ class Transaction {
 
   #reformatDate(date) {
     var day = this.#twoDigitNumber(date.getDate());
-    var month = this.#twoDigitNumber(date.getMonth() + 1)
-    return `${day}/${month}/${date.getFullYear()}`
+    var month = this.#twoDigitNumber(date.getMonth() + 1);
+    return `${day}/${month}/${date.getFullYear()}`;
   }
 
   #twoDigitNumber(number) {
     if (number > 9) {
-      return String(number)
+      return String(number);
     }
-    return `0${number}`
-  }
-
-  validDate() {
-    return !isNaN(this.date);
-  }
-
-  validAmount() {
-    return (!isNaN(this.credit) && !isNaN(this.debit));
+    return `0${number}`;
   }
 }
 

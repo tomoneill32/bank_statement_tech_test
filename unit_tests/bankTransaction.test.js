@@ -15,6 +15,15 @@ describe('Transaction', () => {
     })
   })
 
+  describe('reformatTransaction', () => {
+    it('returns a correctly reformatted transaction', () => {
+      const transaction = new Transaction('31/01/2021', 1000, 0);
+      transaction.balance = 1000;
+      const expectedOutput = '\n31/01/2021 || 1000.00 || || 1000.00';
+      expect(transaction.reformatTransaction()).toEqual(expectedOutput);
+    })
+  })
+
   describe('validDate', () => {
     it('returns false for an invalid date', () => {
       const transaction = new Transaction('25/25/2025',100,0);
