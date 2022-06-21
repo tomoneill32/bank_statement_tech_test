@@ -1,3 +1,5 @@
+const Transaction = require('./bankTransaction');
+
 class BankStatement {
 
   constructor(transactions) {
@@ -11,40 +13,14 @@ class BankStatement {
   }
 
   #createStatement() {
-    var transactionsString = this.#bankTransactionsToString();
+    var transactionsString = this.#bankTransactionsReformat();
     return 'date || credit || debit || balance' + transactionsString;
   }
 
-  #bankTransactionsToString() {
+  #bankTransactionsReformat() {
     return this.transactions.map((transaction) => {
-      var credit = this.#reformatNumber(transaction.credit);
-      var debit = this.#reformatNumber(transaction.debit);
-      var date = this.#reformatDate(transaction.date)
-      return `\n${date} || ${credit}|| ${debit}|| ${transaction.balance.toFixed(2)}`;
+      return transaction.reformatTransaction();
     }).reverse().join('');
-  }
-
-  #reformatNumber(debit) {
-    if (debit !== 0) {
-      return debit.toFixed(2) + ' ';
-    } else {
-      return '';
-    }
-  }
-
-  #reformatDate(date) {
-    var day = this.#twoDigitNumber(date.getDate());
-    var month = this.#twoDigitNumber(date.getMonth() + 1)
-    return `${day}/${month}/${date.getFullYear()}`
-  }
-
-  #twoDigitNumber(number) {
-    if (number > 9) {
-      return String(number)
-    }
-    else {
-      return `0${number}`
-    }
   }
 }
 
