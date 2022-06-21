@@ -6,19 +6,19 @@ class Transaction {
     this.debit = Number(debit);
     this.balance = null;
   }
-
-  #StringToDate(dateString) {
-    var reformattedString = dateString.split('/').reverse().join('-');
-  return new Date(reformattedString);
-  }
-
+  
   reformatTransaction() {
     var credit = this.#reformatNumber(this.credit);
     var debit = this.#reformatNumber(this.debit);
     var date = this.#reformatDate(this.date);
     return `\n${date} || ${credit}|| ${debit}|| ${this.balance.toFixed(2)}`;
   }
-
+  
+  #StringToDate(dateString) {
+    var reformattedString = dateString.split('/').reverse().join('-');
+  return new Date(reformattedString);
+  }
+  
   #reformatNumber(debit) {
     if (debit !== 0) {
       return debit.toFixed(2) + ' ';
